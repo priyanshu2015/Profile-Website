@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+body {
+  background-color: black;
+  color: black;
+ text-align: center;
+}
+    #form
+    {
+        padding:10px;
+        background-color:dimgray;
+        color:black;
+        border-width:thick;
+        border-color: brown;
+        border-radius:5%;
+        width:50%;
+        height: 600px;
+        
+    }
+    #login{
+       
+        margin-left:auto;
+        margin-right: auto;
+    }
+    #mainCaptcha{
+        font-weight: bolder;
+        font-size: 30px;
+        text-align: center;
+        background-image: url(download.jpg);
+    }
+ </style>
+        <body onload="generateCaptcha()">
+         <div id='form'>
+
+<form method="POST" action="/sign"  id="login" onsubmit="return CheckValidCaptcha()">
+        
+               <div>
+                <label>Username:</label>
+                <input id="name" type="text" name="username" value="" required>
+            </div>
+            <br>
+           <br>
+            <div>
+                <label>Password:</label>
+                <input id="password" type="password" name="password" value= "" required onfocus="checkCookie()">
+            </div>
+            <br>
+            
+            <div>
+                <p>Text captcha</p><br>
+          <input type="text" id="mainCaptcha"readonly="readonly"/><br><br>
+        <input type="button" id="refresh" value="Refresh" onclick="generateCaptcha();" /><br><br>
+        <p>Enter Captcha:</p><br>
+        <input type="text" id="txtInput"/><br><br>
+    
+        <input type="submit" value="Submit" onclick="CheckValidCaptcha()"><br><br>
+        <span id="error" style="color:red"></span><br><br>
+            </div>
+            <br>
+            <br>
+            <div style="border:10px;"><a href="./signup.html"><b>Create an Account?</b></a></div>
+          
+        </form>
+         </div>
+        <script>
+
+         function generateCaptcha()
+         { 
+             var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','0');
+             var i;
+             for (i=0;i<4;i++){
+               var a = alpha[Math.floor(Math.random() * alpha.length)];
+               var b = alpha[Math.floor(Math.random() * alpha.length)];
+               var c = alpha[Math.floor(Math.random() * alpha.length)];
+               var d = alpha[Math.floor(Math.random() * alpha.length)];
+              }
+            var code = a + '' + b + '' + '' + c + '' + d;
+            document.getElementById("mainCaptcha").value = code
+          }
+          function CheckValidCaptcha(){
+              var string1 = removeSpaces(document.getElementById('mainCaptcha').value);
+              var string2 = removeSpaces(document.getElementById('txtInput').value);
+              if (string1 == string2){
+                return true;
+              }
+              else{       
+         document.getElementById('error').innerHTML = "Please enter a valid captcha."; 
+         //alert("Please enter a valid captcha.");
+                return false;
+         
+              }
+          }
+          function removeSpaces(string){
+            return string.split(' ').join('');
+          }
+      </script>
+      <script>
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            var username= document.getElementById("name").value;
+            var user = getCookie(username);
+            if (user != "") {
+              document.getElementById("password").value=user; 
+        } else {
+            user = document.getElementById("password").value;
+            if (user != "" && user != null) {
+                setCookie(username, user, 30);
+                }
+            }
+        }
+
+    
+    </script>
+
+   
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+        <meta charset="utf-8">
+        <title> Welcome Page!</title>
+        <style>
+            h1{
+                text-align: center;
+                text-decoration: underline;
+            }
+            h2{
+                text-decoration: underline;
+            }
+            #personal, #qualification, #hobbies, #contact{
+                font-size: 30px;
+                color: cadetblue;
+                text-align: center;
+            }
+            body{
+                background-image: url("signup.jpg");
+                color: cadetblue;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+
+    <body ng-app="myApp">
+      <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+       <script>
+           
+           
+           window.onload = function() {
+  inactivityTime();
+}
+
+var inactivityTime = function () {
+    var time;
+    window.onload = resetTimer;
+    // DOM Events
+    document.onmousemove = resetTimer;
+    document.onkeypress = resetTimer;
+
+    function logout() {
+        alert("You are now logged out.");
+        window.location.assign("signin.html");
+    }
+
+    function resetTimer() {
+        clearTimeout(time);
+        time = setTimeout(logout, 5000);
+        // 1000 milliseconds = 1 second
+    }
+        
+};
+           </script>
+        <p id="1" This is my welcome page></p>
+        <h1> RESUME</h1>
+        <br>
+        <br>
+        <p id="personal", href="#PERSONAL">1.Personal</p>
+        <p id="qualification">2.Qualification</p>
+        <p id="hobbies">3.Hobbies</p>
+        <p id="contact">4.Contact</p>
+       
+        <h2>Personal</h2><a name="PERSONAL"></a>
+        <p> Name : Priyanshu Gupta</p>
+           <p>
+                College/Universsity: VIT VELLORE
+            </p>
+            
+            <p> School: B.tech</p>
+            <p> Branch: IT</p>
+            <p>Registration number : 18BIT0146</p>
+            
+            
+            <button id="form_" onclick= form_hide(1)>Fill out a form for detailed information</button>
+            <script>
+                var a;
+                function form_hide(a)
+                {
+                     if(a==1)
+                    document.getElementById("form_").style.display="block";
+                    else
+                    document.getElementById("form_").style.display="none";
+                }
+            </script>
+      <div ng-controller="demo">
+        <h2>Qualifications</h2>
+    
+            <ul>
+               <li ng-repeat="x in qualifications">
+                {{x.name}}
+               </li>
+                
+            </ul>
+            <h2>Projects</h2>
+            <p>
+                <ul>
+                  <li ng-repeat="x in projects">
+                    {{x.name}}
+                  </li>
+                </ul>
+            </p>
+          </div>
+            <h2>Hobbies</h2>
+            <p>
+                <ul>
+                    <li>Reading books</li>
+                        <ol>
+                            <li>Preety shenoy</li>
+                            <li>Amish</li>
+                        </ol>
+                    
+                    
+                </ul>
+
+            </p>
+
+           <div ng-controller="myCtrl">
+        <button ng-click="myFunc()">Contact</button>
+        <div ng-show="showMe">
+        <p>    
+            <table border="5">
+                <tr>
+                    <td><p> My phone number:</td> <td>+6264887500</td><br> </tr>
+                <tr>
+                    <td><p>My email:</td><td><a href=":ayushkanaujia2000@gmail.com"> Email Address</a></td>
+                </tr>
+            </table>
+        </p>
+      </div>
+    </div>
+    <script>
+      var app=angular.module('myApp',[]);
+      app.controller('demo',function($scope){
+           $scope.qualifications=[{name:'passed in class 10th'},{name:'passed in class 12th'}];
+        $scope.projects=[{name:'sports analytics'},{name:'web portal'}];
+        });
+      app.controller('myCtrl',function($scope){
+        $scope.showMe=false;
+        $scope.myFunc=function(){
+          $scope.showMe=!$scope.showMe;
+        };
+      });
+      
+        
+      
+</script>
+
+        
+        
+        
+
+
+
+    </body>
+    </html>
+
+

@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+    <title>use of canvas</title>
+    canvas{
+        border:1px solid #000;
+      }
+    #canvas{
+        margin-left:400px;
+    }
+
+    body{
+  background-color:lightsteelblue;
+  color: black;
+  
+    }
+</style>
+<script type="text/javascript">
+window.onload = function() {
+var canvas = document.getElementById("myCanvas");
+var context = canvas.getContext("2d");
+    
+context.arc(50,100,45,0,2*Math.PI ,false);
+
+context.rect(95,50,150,100);
+
+context.lineWidth=1;
+context.strokeStyle="black";
+context.moveTo(47.5,60);
+context.lineTo(60,25);
+
+context.lineWidth=1;
+context.strokeStyle="black";
+context.moveTo(47.5,60);
+context.lineTo(35,25);
+
+context.lineWidth=1;
+context.strokeStyle="black";
+context.moveTo(140,150);
+context.lineTo(140,190);
+
+context.lineWidth=1;
+context.strokeStyle="black";
+context.moveTo(190,150);
+context.lineTo(190,190);
+
+context.stroke();
+};
+</script>
+</head>
+<body>
+<div id="canva">
+<canvas id="myCanvas" width="300" height="200" align-items="center"></canvas>
+    </div>
+</body>
+</html>
