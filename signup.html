@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+    <html>
+        <head>
+                <title>Create Account</title>
+                <style>
+            body
+            { background-image: url( "signup.jpg");
+            color: cadetblue;
+                font-size: 20px;
+                font-weight: bold;
+                    }
+                    
+                    
+               }           
+            
+                    
+            </style>
+        </head>
+        <body>
+            <form action="/login.html" method="POST" onsubmit="return onvalidate()">
+                Enter Name <input required name="name" type="text"><br><br>
+                Password <input required name="password" type="password"><br><br>
+                Gender <br>
+                    <input type="radio" name="gender" value="male"> Male<br>
+                    <input type="radio" name="gender" value="female"> Female<br>
+                    <input type="radio" name="gender" value="other"> Other<br><br>
+                   
+                Age<br> 0<input required type="range" name="age" min="0" max="100" value="0" class="slider" id="myRange" onchange="updateTextInput(this.value)"onfocus="focusfunction()" onblur="onvalidate()">100 <br>
+                <span id="age" style="color:white; display: none; font-family:cursive;">(Above 18 years only)</span><br>
+                Value: <span id="demo"></span><br>
+                <!--<output name="x" for="myRange"></output>--><br>
+
+                Email    <input required name="email" type="email"><br><br><br>
+                
+                Contact <input required type="tel" name="contact" pattern="[8-9]{1}[0-9]{9}"><br><br><br>
+
+                <br><br><br>
+                    
+               
+
+
+
+                Hosteller?<br>
+                    <select required size="2">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select><br><br><br>
+                
+
+               
+
+                Percentage in Class 12<br><br>
+                <input required list="browsers" name="browser">
+                <datalist id="browsers">
+                    <option value="80 - 100">
+                    <option value="60 - 80">
+                    <option value="40 - 60">
+                </datalist>
+                <br><br>
+
+
+                <input required type="checkbox" id="cbox" name="declare">I do hereby declare that above particulars of information and facts stated are true, correct and complete to the best of my knowledge and belief.<br><br>
+
+                <input type="submit" value="Submit" >
+                
+            </form>
+        </body>
+
+        <script>
+            var slider = document.getElementById("myRange");
+            output.innerHTML = slider.value; // Display the default slider value
+
+            // Update the current slider value (each time you drag the slider handle)
+            slider.oninput = function() {
+            output.innerHTML = this.value;
+            }
+        </script>
+
+            <script>
+                var slider = document.getElementById("myRange");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value;
+
+                slider.oninput = function() {
+                    output.innerHTML = this.value;
+                }
+            </script>
+        
+        <script>
+        
+        </script>
+        
+
+        <script>
+            function updateTextInput(val) {
+          document.getElementById('myRange').value=val; 
+        }    
+        </script>
+
+
+        <script>
+            function onvalidate(){
+                 document.getElementById("age").style.display='none';
+                var a = document.getElementById('myRange').value;
+                if (a>18)
+                    {
+                        document.getElementById('form').submit();
+                        return true;
+                    }
+                else{
+                        window.alert("Please enter a valid age between 18-100");
+                        return false;   
+                    }
+            }
+        </script>
+         
+         <script>
+             function focusfunction()
+             {
+                document.getElementById("age").style.display='inline';
+             }
+        
+        </script>
